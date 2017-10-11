@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+      <button class="btn btn-outline-success"
+          routerLink="/videoes"
+          routerLinkActive="active">
+        <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> BACK
+    </button>
+    <hr>
+    </div>
+  </div>
+    <div class="card">
+      <h4 class="card-header">
+         Video details
+      </h4>
+      <div class="card-body row">
+        <div class="col-md-4">
+          <img class="img" src="http://via.placeholder.com/250x250">
+        </div>
+        <div class="col-md-8">
+          <dl class="row">
+            <dt class="col-md-3">Title: </dt>
+            <dd class="col-md-9">{{video?.title}}</dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-md-3">Year: </dt>
+            <dd class="col-md-9">{{video?.year}}</dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-md-3">Genre(s): </dt>
+            <dd class="col-md-9">
+            <ul class="list-unstyled">
+              <li *ngFor="let genre of video?.genres">
+                {{genre.name}}
+              </li>
+            </ul>
+            </dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-md-3">Price pr. day: </dt>
+            <dd class="col-md-9">{{video?.pricePrDay}}</dd>
+          </dl>
+        </div>
+    </div>
+      <div class="card-footer bg-transparent">
+        <div class="pull-right">
+          <button class="btn btn-outline-danger" (click)="delete()">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            Delete
+          </button>
+          <button class="btn btn-outline-info">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+            Update
+          </button>
+        </div>
+      </div>
+  </div>
+</div>
+<!--<h2>
+  {{video?.title}}
+</h2>
+<div class="video-detail">
+  <img class="img" src="http://via.placeholder.com/250x250">
+  <h3>ID: {{video?.id}}</h3>
+  <h3>Year: {{video?.year}}</h3>
+  <h3>Price pr. day: {{video?.pricePrDay}}</h3>
+  <h3>Genre(s):</h3>
+  <p *ngFor="let genre of video?.genres">{{genre.name}}</p>
+</div>
+<ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+<hr>
+<pre>Selected time: {{time | json}}</pre>-->
+
+
