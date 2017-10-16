@@ -39,15 +39,11 @@ export class VideoListComponent implements OnInit {
 
   deleteConfirmed($event) {
     this.videoService.delete(this.videoToDelete.id)
-      .subscribe(video => {
-        this.videoService.getVideoes()
-        // Executing and explaning when done let me know in the subscribe below.
-          .subscribe(
-            videoes => {
-              this.videoes = videoes;
-            }
-          );
+      .switchMap(video =>  this.videoService.getVideoes())
+      .subscribe(videoes => {
+        this.videoes = videoes;
       });
+
     $event.stopPropagation();
   }
 
@@ -59,6 +55,11 @@ export class VideoListComponent implements OnInit {
   edit($event) {
 
     $event.stopPropagation();
+  }
+
+  createVideo() {
+    this.router
+      .navigateByUrl('/videoes/create');
   }
 
 }

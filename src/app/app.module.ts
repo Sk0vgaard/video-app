@@ -4,16 +4,18 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
-import { VideoComponent } from './videoes/video/video.component';
 import { VideoService } from './videoes/shared/video.service';
 import {HttpClientModule} from '@angular/common/http';
 import { VideoListComponent } from './videoes/video-list/video-list.component';
 import { VideoDetailComponent } from './videoes/video-detail/video-detail.component';
 import {RouterModule, Routes} from '@angular/router';
+import { VideoCreateComponent } from './videoes/video-create/video-create.component';
 
 const appRoutes: Routes = [
   { path: 'video/:id',
     component: VideoDetailComponent },
+  { path: 'videoes/create',
+    component: VideoCreateComponent },
   {
     path: 'videoes',
     component: VideoListComponent,
@@ -28,9 +30,9 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    VideoComponent,
     VideoListComponent,
-    VideoDetailComponent
+    VideoDetailComponent,
+    VideoCreateComponent
   ],
   imports: [
     BrowserModule,
