@@ -44,7 +44,7 @@
         </div>
     </div>
       <div class="card-footer bg-transparent">
-        <div class="pull-right">
+        <div class="pull-right" *ngIf="!confirmDelete">
           <button class="btn btn-outline-danger" (click)="delete()">
             <i class="fa fa-trash" aria-hidden="true"></i>
             Delete
@@ -54,22 +54,17 @@
             Update
           </button>
         </div>
+        <div class="pull-right" *ngIf="confirmDelete">
+          <button class="btn btn-outline-danger" (click)="deleteConfirmed()">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            Sure?
+          </button>
+          <button class="btn btn-outline-success" (click)="abortDelete()">
+            <i class="fa fa-ban" aria-hidden="true"></i>
+            Cancel
+          </button>
+        </div>
       </div>
   </div>
 </div>
-<!--<h2>
-  {{video?.title}}
-</h2>
-<div class="video-detail">
-  <img class="img" src="http://via.placeholder.com/250x250">
-  <h3>ID: {{video?.id}}</h3>
-  <h3>Year: {{video?.year}}</h3>
-  <h3>Price pr. day: {{video?.pricePrDay}}</h3>
-  <h3>Genre(s):</h3>
-  <p *ngFor="let genre of video?.genres">{{genre.name}}</p>
-</div>
-<ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
-<hr>
-<pre>Selected time: {{time | json}}</pre>-->
-
 
