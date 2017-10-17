@@ -13,11 +13,68 @@
       <hr>
     </div>
     <div class="col-md-12">
-      <form [formGroup]="videoGroup" novalidate>
+      <ngb-alert *ngIf="videoCreatedSuccessfully" (close)="closeAlert()" type="success">
+        The video have successfully been saved.
+      </ngb-alert>
+      <ngb-alert *ngIf="videoCreatedFailed" (close)="closeAlert()" type="danger">
+        Something went wrong. The video did <strong>NOT</strong> save.
+      </ngb-alert>
+      <form (ngSubmit)="save()" [formGroup]="videoGroup" novalidate>
         <div class="form-group">
-          <label class="center-block">Title:
-            <input class="form-control" formControlName="title">
+          <label class="center-block col-md-12">
+            Title:
+            <input class="form-control" placeholder="Title of video" [ngClass]="{
+                   'is-invalid': isInvalid('title') ,
+                   'is-valid': isValid('title')}"
+                   formControlName="title">
+            <div *ngIf="isInvalid('title')"
+                 class="invalid-feedback">
+              <div *ngIf="videoGroup.controls['title'].errors.required">
+                Title must be at least 1 character long.
+              </div>
+              <div *ngIf="videoGroup.controls['title'].errors.minlength">
+                Name must be at least 1 characters long.
+              </div>
+            </div>
           </label>
+          <label class="center-block col-md-12">
+            Year:
+            <input class="form-control" placeholder="4 Digits" [ngClass]="{
+                    'is-invalid': isInvalid('year') ,
+                    'is-valid': isValid('year')}"
+                   formControlName="year">
+            <div *ngIf="isInvalid('year')"
+                 class="invalid-feedback">
+              <div *ngIf="videoGroup.controls['year'].errors.required">
+                Year must be exactly 4 digits.
+              </div>
+              <div *ngIf="videoGroup.controls['year'].errors.minlength">
+                Year must be exactly 4 digits.
+              </div>
+              <div *ngIf="videoGroup.controls['year'].errors.maxlength">
+                Year must be exactly 4 digits.
+              </div>
+            </div>
+          </label>
+          <label class="center-block col-md-12">
+            Price pr. day:
+            <input class="form-control" placeholder="Amount" [ngClass]="{'is-invalid': isInvalid('pricePrDay') ,
+                    'is-valid': isValid('pricePrDay')}"
+                   formControlName="pricePrDay">
+            <div *ngIf="isInvalid('pricePrDay')"
+                 class="invalid-feedback">
+              <div *ngIf="videoGroup.controls['pricePrDay'].errors.required">
+                The cost of the video must be atleast 1.
+              </div>
+            </div>
+          </label>
+          <button
+            [disabled]="videoGroup.invalid"
+            type="submit"
+            class="btn btn-outline-success pull-right">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            Save
+          </button>
         </div>
       </form>
       {{videoGroup.value | json}} {{videoGroup.status | json}}

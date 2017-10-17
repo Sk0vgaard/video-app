@@ -34,4 +34,9 @@ export class VideoService {
       .delete<Video>(urlGetOne + id);
   }
 
+  create(video: Video): Observable<Video> {
+    return this.http
+      .post<Video>(urlGetOne, video);
+  }
+
 }
