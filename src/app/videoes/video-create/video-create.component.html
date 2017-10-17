@@ -12,5 +12,15 @@
       </h4>
       <hr>
     </div>
+    <div class="col-md-12">
+      <form [formGroup]="videoGroup" novalidate>
+        <div class="form-group">
+          <label class="center-block">Title:
+            <input class="form-control" formControlName="title">
+          </label>
+        </div>
+      </form>
+      {{videoGroup.value | json}} {{videoGroup.status | json}}
+    </div>
   </div>
 </div>
