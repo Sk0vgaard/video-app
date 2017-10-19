@@ -64,7 +64,17 @@
             <div *ngIf="isInvalid('pricePrDay')"
                  class="invalid-feedback">
               <div *ngIf="videoGroup.controls['pricePrDay'].errors.required">
-                The cost of the video must be atleast 1.
+                The cost of the video must be at least 1.
+              </div>
+            </div>
+          </label>
+          <label class="center-block col-md-12">
+            Genres:
+            <div class="card">
+              <div class="card-body">
+                <app-genre-list>
+
+                </app-genre-list>
               </div>
             </div>
           </label>
@@ -77,7 +87,7 @@
           </button>
         </div>
       </form>
-      {{videoGroup.value | json}} {{videoGroup.status | json}}
+      <!--{{videoGroup.value | json}} {{videoGroup.status | json}}-->
     </div>
   </div>
 </div>

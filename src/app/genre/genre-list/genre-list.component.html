@@ -1,0 +1,27 @@
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let genre of genres">
+    <i class="fa fa-file-video-o" aria-hidden="true"></i>
+    {{genre.name}}
+    <div class="pull-right">
+      <button class="btn btn-outline-danger">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </button>
+      <button class="btn btn-outline-secondary">
+        <i class="fa fa-pencil-square-o" aria-hidden="true">
+      </i></button>
+    </div>
+  </li>
+</ul>
+<hr>
+<form [formGroup]="genreGroup">
+  <div class="form-group">
+    <label class="center-block">
+      New Genre:
+      <input class="form-control" placeholder="Thriller, Action etc." formControlName="genre">
+    </label>
+    <button type="submit" class="btn btn-outline-success">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+  </div>
+</form>
+

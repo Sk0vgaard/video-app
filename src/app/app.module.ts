@@ -10,6 +10,7 @@ import { VideoListComponent } from './videoes/video-list/video-list.component';
 import { VideoDetailComponent } from './videoes/video-detail/video-detail.component';
 import {RouterModule, Routes} from '@angular/router';
 import { VideoCreateComponent } from './videoes/video-create/video-create.component';
+import { GenreListComponent } from './genre/genre-list/genre-list.component';
 
 const appRoutes: Routes = [
   { path: 'video/:id',
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     AppComponent,
     VideoListComponent,
     VideoDetailComponent,
-    VideoCreateComponent
+    VideoCreateComponent,
+    GenreListComponent
   ],
   imports: [
     BrowserModule,
