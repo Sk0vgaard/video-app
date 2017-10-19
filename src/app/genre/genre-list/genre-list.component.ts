@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Genre} from "../shared/genre.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
 
@@ -10,6 +10,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 export class GenreListComponent implements OnInit {
 
   genreGroup: FormGroup;
+  @Input()
   genres: Genre[];
   constructor(private fb: FormBuilder) {
     this.genreGroup = fb.group({
@@ -17,17 +18,19 @@ export class GenreListComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.genres = [{
-      id: 1,
-      name: 'Action'
-    }, {
-      id: 2,
-      name: 'Thriller'
-    }, {
-      id: 3,
-      name: 'Comedy'
-    }];
+  ngOnInit() {}
+
+  delete(i, $event) {
+    $event.preventDefault();
+     this.genres.splice(i, 1);
+  }
+
+  saveGenre() {
+    const values = this.genreGroup.value;
+    this.genres.push({
+      name: values.genre
+    });
+    this.genreGroup.reset();
   }
 
 }

@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {VideoService} from '../shared/video.service';
 import {Video} from '../shared/video.model';
+import {Genre} from "../../genre/shared/genre.model";
 
 @Component({
   selector: 'app-video-create',
@@ -14,6 +15,7 @@ export class VideoCreateComponent implements OnInit {
   videoGroup: FormGroup;
   videoCreatedSuccessfully = false;
   videoCreatedFailed = false;
+  genresInput: Genre[];
   constructor(private router: Router,
               private fb: FormBuilder,
               private videoService: VideoService) {
@@ -27,6 +29,16 @@ export class VideoCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.genresInput = [{
+      id: 1,
+      name: 'Action'
+    }, {
+      id: 2,
+      name: 'Thriller'
+    }, {
+      id: 3,
+      name: 'Comedy'
+    }];
   }
 
   back() {
