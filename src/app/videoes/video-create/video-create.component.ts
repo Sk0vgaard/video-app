@@ -3,7 +3,11 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {VideoService} from '../shared/video.service';
 import {Video} from '../shared/video.model';
-import {Genre} from "../../genre/shared/genre.model";
+import {Genre} from '../../genre/shared/genre.model';
+import 'rxjs/add/observable/forkJoin';
+import {GenreService} from '../../genre/shared/genre.service';
+import {Observable} from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-video-create',
@@ -18,7 +22,8 @@ export class VideoCreateComponent implements OnInit {
   genresInput: Genre[];
   constructor(private router: Router,
               private fb: FormBuilder,
-              private videoService: VideoService) {
+              private videoService: VideoService,
+              private genreService: GenreService) {
     this.videoGroup = this.fb.group({
       title: ['', [Validators.required]],
       year: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(4)
@@ -52,22 +57,33 @@ export class VideoCreateComponent implements OnInit {
   }
 
   save() {
+    const genreIds = [];
+    const genreRequests = [];
     const values = this.videoGroup.value;
-    const video: Video = {
-      title: values.title,
-      year: values.year,
-      pricePrDay: values.pricePrDay,
-      genres: this.genresInput
-    };
-    this.videoService.create(video)
-      .subscribe(video => {
+      this.genresInput.forEach(genre => {
+        genreRequests.push(this.genreService.create(genre)
+        .map(genreBack => {
+        genreIds.push(genreBack.id);
+      }));
+    });
+    Observable.forkJoin(genreRequests)
+      .switchMap(() =>
+        this.videoService.create({
+          title: values.title,
+          year: values.year,
+          pricePrDay: values.pricePrDay,
+          genreIds: genreIds})
+      ).subscribe(video => {
         this.videoGroup.reset();
         this.videoCreatedSuccessfully = true;
+        this.genresInput = [];
         setTimeout(() => {
           this.videoCreatedSuccessfully = false;
         }, 3000);
       });
   }
+
+
 
   isInvalid(controlName: string) {
     const control = this.videoGroup.controls[controlName];

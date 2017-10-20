@@ -6,4 +6,5 @@ export class Video {
   year: number;
   pricePrDay: number;
   genres?: Genre[];
+  genreIds?: number[];
 }

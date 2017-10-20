@@ -11,6 +11,7 @@ import { VideoDetailComponent } from './videoes/video-detail/video-detail.compon
 import {RouterModule, Routes} from '@angular/router';
 import { VideoCreateComponent } from './videoes/video-create/video-create.component';
 import { GenreListComponent } from './genre/genre-list/genre-list.component';
+import {GenreService} from './genre/shared/genre.service';
 
 const appRoutes: Routes = [
   { path: 'video/:id',
@@ -43,7 +44,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgbModule.forRoot()
   ],
-  providers: [VideoService],
+  providers: [VideoService, GenreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

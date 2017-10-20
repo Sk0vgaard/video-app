@@ -30,11 +30,14 @@
           <dl class="row">
             <dt class="col-md-3">Genre(s): </dt>
             <dd class="col-md-9">
-            <ul class="list-unstyled">
-              <li *ngFor="let genre of video?.genres">
-                {{genre.name}}
-              </li>
-            </ul>
+              <app-genre-list [genres]="video?.genres">
+
+              </app-genre-list>
+            <!--<ul class="list-unstyled">-->
+              <!--<li *ngFor="let genre of video?.genres">-->
+                <!--{{genre.name}}-->
+              <!--</li>-->
+            <!--</ul>-->
             </dd>
           </dl>
           <dl class="row">
