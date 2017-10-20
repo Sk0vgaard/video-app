@@ -5,7 +5,6 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {observableToBeFn} from 'rxjs/testing/TestScheduler';
 
 const urlGetAll = environment.apiEndPoint + '/videoes';
 const urlGetOne = urlGetAll + '/';

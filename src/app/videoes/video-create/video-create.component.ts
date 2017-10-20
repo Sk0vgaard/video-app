@@ -29,16 +29,17 @@ export class VideoCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.genresInput = [{
-      id: 1,
-      name: 'Action'
-    }, {
-      id: 2,
-      name: 'Thriller'
-    }, {
-      id: 3,
-      name: 'Comedy'
-    }];
+    this.genresInput = [];
+    // this.genresInput = [{
+    //   id: 1,
+    //   name: 'Action'
+    // }, {
+    //   id: 2,
+    //   name: 'Thriller'
+    // }, {
+    //   id: 3,
+    //   name: 'Comedy'
+    // }];
   }
 
   back() {
@@ -56,7 +57,7 @@ export class VideoCreateComponent implements OnInit {
       title: values.title,
       year: values.year,
       pricePrDay: values.pricePrDay,
-      genres: []
+      genres: this.genresInput
     };
     this.videoService.create(video)
       .subscribe(video => {
